@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -43,7 +42,7 @@ const galleryImages = [
   },
   {
     src: 'https://images.unsplash.com/photo-1554679665-f5537f187268?q=80&auto=format&fit=crop',
-    alt: 'Chef's special dish',
+    alt: "Chef's special dish",
     category: 'Food'
   },
   {
