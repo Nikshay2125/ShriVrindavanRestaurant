@@ -46,13 +46,49 @@ const menuData: MenuCategory[] = [
         name: 'Beef Tartare',
         description: 'Hand-cut beef with capers, shallots, and quail egg',
         price: '17',
+        image: 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&auto=format&fit=crop',
         dietary: ['gluten-free']
       },
       {
         name: 'Wild Mushroom Soup',
         description: 'Creamy soup with forest mushrooms and truffle oil',
         price: '12',
+        image: 'https://images.unsplash.com/photo-1547592180-85f173990554?q=80&auto=format&fit=crop',
         dietary: ['vegetarian', 'gluten-free']
+      },
+      {
+        name: 'Prawn Cocktail',
+        description: 'Classic prawn cocktail with marie rose sauce and lemon',
+        price: '15',
+        image: 'https://images.unsplash.com/photo-1565895405127-481853366cf8?q=80&auto=format&fit=crop',
+        dietary: ['gluten-free']
+      },
+      {
+        name: 'Foie Gras Terrine',
+        description: 'Silky terrine with brioche toast and fig jam',
+        price: '19',
+        image: 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'Salmon Gravlax',
+        description: 'House-cured salmon with dill, mustard sauce and rye crisps',
+        price: '16',
+        image: 'https://images.unsplash.com/photo-1610612410566-516f896139bf?q=80&auto=format&fit=crop',
+        dietary: ['gluten-free']
+      },
+      {
+        name: 'Grilled Octopus',
+        description: 'Tender octopus with smoked paprika, olives and oregano',
+        price: '18',
+        image: 'https://images.unsplash.com/photo-1589386417356-8464ebca47ff?q=80&auto=format&fit=crop',
+        dietary: ['gluten-free']
+      },
+      {
+        name: 'Bruschetta',
+        description: 'Grilled sourdough with tomato, basil and extra virgin olive oil',
+        price: '12',
+        image: 'https://images.unsplash.com/photo-1572695151366-d919e643f320?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian']
       },
     ]
   },
@@ -84,17 +120,46 @@ const menuData: MenuCategory[] = [
         name: 'Rack of Lamb',
         description: 'Herb-crusted lamb with rosemary jus and butter-poached vegetables',
         price: '38',
+        image: 'https://images.unsplash.com/photo-1602538320474-9566ea36bd27?q=80&auto=format&fit=crop',
       },
       {
         name: 'Duck Breast',
         description: 'Pan-roasted duck with cherry reduction and celeriac purée',
         price: '32',
+        image: 'https://images.unsplash.com/photo-1619221882266-c3eb5eb0ac7b?q=80&auto=format&fit=crop',
         dietary: ['gluten-free']
       },
       {
         name: 'Eggplant Parmigiana',
         description: 'Layered eggplant with tomato sauce, mozzarella, and basil',
         price: '22',
+        image: 'https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian']
+      },
+      {
+        name: 'Filet Mignon',
+        description: '8oz prime beef with peppercorn sauce and confit garlic',
+        price: '42',
+        image: 'https://images.unsplash.com/photo-1558030006-450675393462?q=80&auto=format&fit=crop',
+        dietary: ['gluten-free']
+      },
+      {
+        name: 'Seafood Linguine',
+        description: 'Fresh pasta with prawns, mussels, clams and lobster bisque',
+        price: '30',
+        image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'Roasted Chicken',
+        description: 'Free-range chicken with preserved lemon, herbs and roast potatoes',
+        price: '26',
+        image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'Vegetable Wellington',
+        description: 'Seasonal vegetables in pastry with vegetable gravy',
+        price: '24',
+        image: 'https://images.unsplash.com/photo-1631898039944-ee3976cf92fa?q=80&auto=format&fit=crop',
         dietary: ['vegetarian']
       },
     ]
@@ -121,13 +186,43 @@ const menuData: MenuCategory[] = [
         name: 'Crème Brûlée',
         description: 'Classic vanilla custard with caramelized sugar crust',
         price: '10',
+        image: 'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?q=80&auto=format&fit=crop',
         dietary: ['vegetarian', 'gluten-free']
       },
       {
         name: 'Tiramisu',
         description: 'Coffee-soaked ladyfingers with mascarpone cream and cocoa',
         price: '11',
+        image: 'https://images.unsplash.com/photo-1551529674-48920e9fbe51?q=80&auto=format&fit=crop',
         dietary: ['vegetarian']
+      },
+      {
+        name: 'Apple Tarte Tatin',
+        description: 'Caramelized apple tart with cinnamon ice cream',
+        price: '11',
+        image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian']
+      },
+      {
+        name: 'Panna Cotta',
+        description: 'Vanilla panna cotta with seasonal berries and coulis',
+        price: '9',
+        image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian', 'gluten-free']
+      },
+      {
+        name: 'Chocolate Trio',
+        description: 'White, milk and dark chocolate desserts on one plate',
+        price: '14',
+        image: 'https://images.unsplash.com/photo-1611329695518-1763fc775f0d?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian']
+      },
+      {
+        name: 'Cheese Board',
+        description: 'Selection of artisanal cheeses with crackers and chutney',
+        price: '16',
+        image: 'https://images.unsplash.com/photo-1505575967455-40e256f73376?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian', 'gluten-free']
       },
     ]
   },
@@ -136,29 +231,76 @@ const menuData: MenuCategory[] = [
     description: 'Complement your meal with our carefully curated selection of wines, cocktails and non-alcoholic beverages',
     items: [
       {
-        name: 'Signature Cocktails',
-        description: 'Handcrafted cocktails using premium spirits and fresh ingredients',
-        price: '14-18',
+        name: 'Classic Martini',
+        description: 'Gin or vodka with dry vermouth and olive or lemon twist',
+        price: '14',
+        image: 'https://images.unsplash.com/photo-1560963689-b5682b6440f8?q=80&auto=format&fit=crop',
       },
       {
-        name: 'Wine Selection',
-        description: 'Curated selection of wines from around the world',
-        price: 'by glass/bottle',
+        name: 'Old Fashioned',
+        description: 'Bourbon, angostura bitters, sugar and orange peel',
+        price: '15',
+        image: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'Negroni',
+        description: 'Gin, sweet vermouth and Campari with orange garnish',
+        price: '14',
+        image: 'https://images.unsplash.com/photo-1550425827-8225e67fe0f3?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'Espresso Martini',
+        description: 'Vodka, coffee liqueur and fresh espresso',
+        price: '15',
+        image: 'https://images.unsplash.com/photo-1581927692708-23a653d8c35e?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'French 75',
+        description: 'Gin, lemon juice, sugar syrup topped with champagne',
+        price: '16',
+        image: 'https://images.unsplash.com/photo-1566046637041-9008d3e500c2?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'House Red Wine',
+        description: 'Selection of premium red wines by the glass',
+        price: '10-18',
+        image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'House White Wine',
+        description: 'Selection of premium white wines by the glass',
+        price: '10-18',
+        image: 'https://images.unsplash.com/photo-1560148218-1a83060f7b32?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'Champagne',
+        description: 'Premium champagne by the glass',
+        price: '18-25',
+        image: 'https://images.unsplash.com/photo-1568197868675-8b4efbbf01fa?q=80&auto=format&fit=crop',
       },
       {
         name: 'Craft Beer',
-        description: 'Local and international craft beers',
+        description: 'Selection of local and international craft beers',
         price: '8-12',
+        image: 'https://images.unsplash.com/photo-1558642891-54be180ea339?q=80&auto=format&fit=crop',
       },
       {
         name: 'Artisanal Coffee',
         description: 'Specialty coffee prepared by our trained baristas',
         price: '5-7',
+        image: 'https://images.unsplash.com/photo-1497636577773-f1231844b336?q=80&auto=format&fit=crop',
       },
       {
-        name: 'Herbal Tea Collection',
+        name: 'Herbal Tea',
         description: 'Selection of premium loose-leaf teas',
         price: '6',
+        image: 'https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'Fresh Juices',
+        description: 'Seasonal fruits freshly pressed to order',
+        price: '7',
+        image: 'https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?q=80&auto=format&fit=crop',
       },
     ]
   }
@@ -210,11 +352,12 @@ const MenuPage = () => {
             {menuData.map((category) => (
               <button
                 key={category.name}
-                className={`px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap ${
+                className={cn(
+                  "px-4 py-2 rounded-full font-medium transition-all whitespace-nowrap",
                   activeCategory === category.name
                     ? "bg-restaurant-burgundy text-white"
                     : "bg-gray-100 text-restaurant-charcoal hover:bg-restaurant-gold/10"
-                }`}
+                )}
                 onClick={() => setActiveCategory(category.name)}
               >
                 {category.name}

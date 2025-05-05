@@ -20,12 +20,12 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: 'url("https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&auto=format&fit=crop&w=2940&h=1200")',
+          backgroundImage: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&auto=format&fit=crop&w=2940&h=1200")',
           backgroundPosition: 'center center'
         }}
       >
         {/* Overlay with improved gradient for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-restaurant-charcoal/70 via-restaurant-charcoal/50 to-restaurant-charcoal/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-restaurant-charcoal/80 via-restaurant-charcoal/60 to-restaurant-charcoal/90"></div>
       </div>
       
       {/* Content */}
@@ -57,34 +57,43 @@ const Hero = () => {
           </Link>
         </div>
 
-        {/* Image thumbnails for visual interest */}
-        <div className="hidden md:flex gap-4 mt-16">
-          <div className="w-24 h-24 rounded-md overflow-hidden shadow-lg">
+        {/* Improved image thumbnails with better images and layout */}
+        <div className="hidden md:flex gap-6 mt-16">
+          <div className="w-32 h-32 rounded-md overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300">
             <img 
-              src="https://images.unsplash.com/photo-1546833998-877b37c2e5c6?q=80&auto=format&fit=crop&w=200&h=200" 
-              alt="Specialty cocktail" 
+              src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&auto=format&fit=crop&w=300&h=300" 
+              alt="Signature dish" 
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-black/30 flex items-end p-2">
+              <span className="text-white text-sm font-medium">Signature Dish</span>
+            </div>
           </div>
-          <div className="w-24 h-24 rounded-md overflow-hidden shadow-lg">
+          <div className="w-32 h-32 rounded-md overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300">
             <img 
-              src="https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&auto=format&fit=crop&w=200&h=200" 
-              alt="Dessert presentation" 
+              src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&auto=format&fit=crop&w=300&h=300" 
+              alt="Craft cocktails" 
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-black/30 flex items-end p-2">
+              <span className="text-white text-sm font-medium">Craft Cocktails</span>
+            </div>
           </div>
-          <div className="w-24 h-24 rounded-md overflow-hidden shadow-lg">
+          <div className="w-32 h-32 rounded-md overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300">
             <img 
-              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&auto=format&fit=crop&w=200&h=200" 
-              alt="Elegant plated dish" 
+              src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&auto=format&fit=crop&w=300&h=300" 
+              alt="Chef's table" 
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-black/30 flex items-end p-2">
+              <span className="text-white text-sm font-medium">Chef's Table</span>
+            </div>
           </div>
         </div>
       </div>
       
       {/* Improved Scroll Indicator with animation */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce bg-white/10 p-2 rounded-full">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce bg-white/20 p-3 rounded-full">
         <svg 
           width="28" 
           height="28" 

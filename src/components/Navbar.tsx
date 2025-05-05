@@ -38,7 +38,10 @@ const Navbar = () => {
       )}
     >
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-restaurant-burgundy font-display text-3xl font-bold">
+        <Link to="/" className={cn(
+          "font-display text-3xl font-bold transition-colors duration-300",
+          isScrolled ? "text-restaurant-burgundy" : "text-white"
+        )}>
           Culinary Canvas
         </Link>
 
@@ -73,7 +76,10 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-restaurant-burgundy"
+          className={cn(
+            "md:hidden transition-colors duration-200",
+            isScrolled ? "text-restaurant-burgundy" : "text-white"
+          )}
           aria-label="Toggle menu"
         >
           <Menu size={24} />

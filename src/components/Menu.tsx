@@ -3,6 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 type MenuItem = {
   name: string;
@@ -41,6 +48,27 @@ const menuData: MenuCategory[] = [
         image: 'https://images.unsplash.com/photo-1515516969-d4008cc6241a?q=80&auto=format&fit=crop',
         dietary: ['vegetarian', 'gluten-free']
       },
+      {
+        name: 'Beef Tartare',
+        description: 'Hand-cut beef with capers, shallots, and quail egg',
+        price: '17',
+        image: 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=80&auto=format&fit=crop',
+        dietary: ['gluten-free']
+      },
+      {
+        name: 'Wild Mushroom Soup',
+        description: 'Creamy soup with forest mushrooms and truffle oil',
+        price: '12',
+        image: 'https://images.unsplash.com/photo-1547592180-85f173990554?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian', 'gluten-free']
+      },
+      {
+        name: 'Prawn Cocktail',
+        description: 'Classic prawn cocktail with marie rose sauce and lemon',
+        price: '15',
+        image: 'https://images.unsplash.com/photo-1565895405127-481853366cf8?q=80&auto=format&fit=crop',
+        dietary: ['gluten-free']
+      },
     ]
   },
   {
@@ -66,6 +94,26 @@ const menuData: MenuCategory[] = [
         image: 'https://images.unsplash.com/photo-1476124369491-e7addf5db371?q=80&auto=format&fit=crop',
         dietary: ['vegetarian', 'gluten-free']
       },
+      {
+        name: 'Rack of Lamb',
+        description: 'Herb-crusted lamb with rosemary jus and butter-poached vegetables',
+        price: '38',
+        image: 'https://images.unsplash.com/photo-1602538320474-9566ea36bd27?q=80&auto=format&fit=crop',
+      },
+      {
+        name: 'Duck Breast',
+        description: 'Pan-roasted duck with cherry reduction and celeriac purée',
+        price: '32',
+        image: 'https://images.unsplash.com/photo-1619221882266-c3eb5eb0ac7b?q=80&auto=format&fit=crop',
+        dietary: ['gluten-free']
+      },
+      {
+        name: 'Eggplant Parmigiana',
+        description: 'Layered eggplant with tomato sauce, mozzarella, and basil',
+        price: '22',
+        image: 'https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian']
+      },
     ]
   },
   {
@@ -83,6 +131,20 @@ const menuData: MenuCategory[] = [
         description: 'Tangy lemon curd in a buttery pastry shell with raspberry sorbet',
         price: '10',
         image: 'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian']
+      },
+      {
+        name: 'Crème Brûlée',
+        description: 'Classic vanilla custard with caramelized sugar crust',
+        price: '10',
+        image: 'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?q=80&auto=format&fit=crop',
+        dietary: ['vegetarian', 'gluten-free']
+      },
+      {
+        name: 'Tiramisu',
+        description: 'Coffee-soaked ladyfingers with mascarpone cream and cocoa',
+        price: '11',
+        image: 'https://images.unsplash.com/photo-1551529674-48920e9fbe51?q=80&auto=format&fit=crop',
         dietary: ['vegetarian']
       },
     ]
@@ -169,38 +231,43 @@ const Menu = () => {
           </div>
         </div>
         
-        {/* Menu Items */}
-        <div ref={addToRefs}>
-          <div className="reveal grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {menuData
-              .find((category) => category.name === activeCategory)
-              ?.items.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-                >
-                  <div className="h-48 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-xl font-display font-bold text-restaurant-charcoal">{item.name}</h3>
-                      <span className="text-restaurant-burgundy font-medium">${item.price}</span>
+        {/* Menu Items Carousel */}
+        <div ref={addToRefs} className="reveal mb-12">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {menuData
+                .find((category) => category.name === activeCategory)
+                ?.items.map((item, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full mx-2">
+                      <div className="h-48 overflow-hidden">
+                        <img 
+                          src={item.image} 
+                          alt={item.name} 
+                          className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <div className="flex justify-between items-start mb-2">
+                          <h3 className="text-xl font-display font-bold text-restaurant-charcoal">{item.name}</h3>
+                          <span className="text-restaurant-burgundy font-medium">${item.price}</span>
+                        </div>
+                        <p className="text-gray-600 mb-4">{item.description}</p>
+                        {renderDietaryIcons(item.dietary)}
+                      </div>
                     </div>
-                    <p className="text-gray-600 mb-4">{item.description}</p>
-                    {renderDietaryIcons(item.dietary)}
-                  </div>
-                </div>
+                  </CarouselItem>
               ))}
-          </div>
+            </CarouselContent>
+            <div className="hidden sm:block">
+              <CarouselPrevious className="bg-white -left-4" />
+              <CarouselNext className="bg-white -right-4" />
+            </div>
+          </Carousel>
         </div>
         
         {/* CTA */}
-        <div className="text-center mt-12" ref={addToRefs}>
+        <div className="text-center mt-8" ref={addToRefs}>
           <div className="reveal">
             <Link to="/menu">
               <Button size="lg" className="bg-restaurant-burgundy hover:bg-restaurant-burgundy/90 text-white">

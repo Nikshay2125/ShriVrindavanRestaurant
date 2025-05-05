@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const galleryImages = [
   {
@@ -35,7 +42,37 @@ const galleryImages = [
     src: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&auto=format&fit=crop',
     alt: 'Dessert presentation',
     category: 'Food'
-  }
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?q=80&auto=format&fit=crop',
+    alt: 'Private dining area',
+    category: 'Ambiance'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1554679665-f5537f187268?q=80&auto=format&fit=crop',
+    alt: "Chef's special dish",
+    category: 'Food'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&auto=format&fit=crop',
+    alt: 'Chef plating a dish',
+    category: 'Kitchen'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&auto=format&fit=crop',
+    alt: 'Pasta dish',
+    category: 'Food'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1622115837997-90c89ae689f9?q=80&auto=format&fit=crop',
+    alt: 'Wine pouring',
+    category: 'Drinks'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?q=80&auto=format&fit=crop',
+    alt: 'Chef plating',
+    category: 'Kitchen'
+  },
 ];
 
 const categories = ['All', 'Food', 'Drinks', 'Ambiance', 'Kitchen'];
@@ -111,28 +148,40 @@ const Gallery = () => {
           </div>
         </div>
         
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" ref={addToRefs}>
-          {filteredImages.map((image, index) => (
-            <div 
-              key={index} 
-              className="reveal h-64 md:h-72 overflow-hidden rounded-lg cursor-pointer relative group"
-              onClick={() => setSelectedImage(image.src)}
-            >
-              <img 
-                src={image.src} 
-                alt={image.alt} 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
-                <p className="text-white font-display text-lg">{image.alt}</p>
-              </div>
+        {/* Gallery Carousel */}
+        <div ref={addToRefs} className="reveal mb-12">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {filteredImages.map((image, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div 
+                    className="h-64 md:h-72 overflow-hidden rounded-lg cursor-pointer relative group mx-2"
+                    onClick={() => setSelectedImage(image.src)}
+                  >
+                    <img 
+                      src={image.src} 
+                      alt={image.alt} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
+                      <div>
+                        <p className="text-white font-display text-lg">{image.alt}</p>
+                        <span className="text-white/80 text-sm">{image.category}</span>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="hidden sm:block">
+              <CarouselPrevious className="bg-white -left-4" />
+              <CarouselNext className="bg-white -right-4" />
             </div>
-          ))}
+          </Carousel>
         </div>
         
         {/* CTA */}
-        <div className="text-center mt-12" ref={addToRefs}>
+        <div className="text-center mt-8" ref={addToRefs}>
           <div className="reveal">
             <Link to="/gallery">
               <Button size="lg" className="bg-restaurant-burgundy hover:bg-restaurant-burgundy/90 text-white">
