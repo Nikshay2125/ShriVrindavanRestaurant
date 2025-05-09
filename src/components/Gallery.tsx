@@ -80,6 +80,7 @@ const categories = ['All', 'Food', 'Drinks', 'Ambiance', 'Kitchen'];
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [isLoaded, setIsLoaded] = useState(false);
   const revealRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
@@ -97,6 +98,11 @@ const Gallery = () => {
 
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Check on mount
+    
+    // Set the loaded state after a short delay to trigger animations
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -116,7 +122,7 @@ const Gallery = () => {
   return (
     <section className="py-20 px-4 bg-white" id="gallery">
       <div className="container mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-12" ref={addToRefs}>
+        <div className={`text-center max-w-2xl mx-auto mb-12 ${isLoaded ? 'animate-[fadeInDown_1s_ease-out]' : ''}`} ref={addToRefs}>
           <div className="reveal">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-restaurant-charcoal mb-2">
               Our Gallery
@@ -129,9 +135,9 @@ const Gallery = () => {
         </div>
         
         {/* Filter Buttons */}
-        <div className="flex justify-center mb-12" ref={addToRefs}>
+        <div className={`flex justify-center mb-12 ${isLoaded ? 'animate-[fadeInUp_1.5s_ease-out]' : ''}`} ref={addToRefs}>
           <div className="reveal flex flex-wrap gap-2 md:gap-4 justify-center">
-            {categories.map((category) => (
+            {categories.map((category, index) => (
               <button
                 key={category}
                 className={cn(
@@ -141,6 +147,7 @@ const Gallery = () => {
                     : "bg-gray-100 text-restaurant-charcoal hover:bg-restaurant-gold/10"
                 )}
                 onClick={() => setSelectedCategory(category)}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {category}
               </button>
@@ -149,22 +156,23 @@ const Gallery = () => {
         </div>
         
         {/* Gallery Carousel */}
-        <div ref={addToRefs} className="reveal mb-12">
+        <div ref={addToRefs} className={`reveal mb-12 ${isLoaded ? 'animate-[fadeIn_2s_ease-out]' : ''}`}>
           <Carousel className="w-full">
             <CarouselContent>
               {filteredImages.map((image, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <div 
-                    className="h-64 md:h-72 overflow-hidden rounded-lg cursor-pointer relative group mx-2"
+                    className={`h-64 md:h-72 overflow-hidden rounded-lg cursor-pointer relative group mx-2 ${isLoaded ? 'animate-[scaleIn_0.6s_ease-out]' : ''}`}
+                    style={{ animationDelay: `${index * 150}ms` }}
                     onClick={() => setSelectedImage(image.src)}
                   >
                     <img 
                       src={image.src} 
                       alt={image.alt} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-6">
-                      <div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-start p-6">
+                      <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                         <p className="text-white font-display text-lg">{image.alt}</p>
                         <span className="text-white/80 text-sm">{image.category}</span>
                       </div>
@@ -174,17 +182,17 @@ const Gallery = () => {
               ))}
             </CarouselContent>
             <div className="hidden sm:block">
-              <CarouselPrevious className="bg-white -left-4" />
-              <CarouselNext className="bg-white -right-4" />
+              <CarouselPrevious className="bg-white -left-4 hover:bg-restaurant-gold hover:text-white transition-colors" />
+              <CarouselNext className="bg-white -right-4 hover:bg-restaurant-gold hover:text-white transition-colors" />
             </div>
           </Carousel>
         </div>
         
         {/* CTA */}
-        <div className="text-center mt-8" ref={addToRefs}>
+        <div className={`text-center mt-8 ${isLoaded ? 'animate-[fadeInUp_2.5s_ease-out]' : ''}`} ref={addToRefs}>
           <div className="reveal">
             <Link to="/gallery">
-              <Button size="lg" className="bg-restaurant-burgundy hover:bg-restaurant-burgundy/90 text-white">
+              <Button size="lg" className="bg-restaurant-burgundy hover:bg-restaurant-burgundy/90 text-white transform hover:scale-105 transition-transform duration-300">
                 View Full Gallery
               </Button>
             </Link>
@@ -194,7 +202,7 @@ const Gallery = () => {
 
       {/* Lightbox */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-4xl p-0 bg-transparent border-0">
+        <DialogContent className="max-w-4xl p-0 bg-transparent border-0 animate-[scaleIn_0.3s_ease-out]">
           {selectedImage && (
             <img 
               src={selectedImage} 

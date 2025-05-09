@@ -266,9 +266,9 @@ const Menu = () => {
       <div className="container mx-auto">
         <div className="text-center max-w-2xl mx-auto mb-12" ref={addToRefs}>
           <div className="reveal">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-restaurant-charcoal mb-2">Seasonal Menu</h2>
-            <div className="w-24 h-1 bg-restaurant-burgundy mx-auto mb-6"></div>
-            <p className="text-gray-700">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-restaurant-charcoal mb-2 animate-[fadeInDown_1s_ease-out]">Seasonal Menu</h2>
+            <div className="w-24 h-1 bg-restaurant-burgundy mx-auto mb-6 animate-[fadeIn_1.2s_ease-out]"></div>
+            <p className="text-gray-700 animate-[fadeIn_1.5s_ease-out]">
               Our menu changes with the seasons, showcasing the finest ingredients at their peak.
               Each dish is thoughtfully crafted to deliver exceptional flavors and textures.
             </p>
@@ -277,7 +277,7 @@ const Menu = () => {
         
         {/* Menu Categories */}
         <div className="flex justify-center mb-12" ref={addToRefs}>
-          <div className="reveal flex flex-wrap gap-2 md:gap-4 justify-center">
+          <div className="reveal flex flex-wrap gap-2 md:gap-4 justify-center animate-[fadeInUp_1.8s_ease-out]">
             {menuData.map((category) => (
               <button
                 key={category.name}
@@ -303,29 +303,25 @@ const Menu = () => {
                 .find((category) => category.name === activeCategory)
                 ?.items.map((item, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full mx-2">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full mx-2 transform hover:scale-105 transition-transform duration-300">
                       {/* Item Image Carousel */}
                       <div className="h-48 overflow-hidden relative">
                         <Carousel className="w-full">
                           <CarouselContent>
                             {item.images.map((image, idx) => (
                               <CarouselItem key={idx} className="basis-full">
-                                <img 
-                                  src={image} 
-                                  alt={`${item.name} - view ${idx + 1}`} 
-                                  className="w-full h-48 object-cover transition-transform hover:scale-105 duration-500"
-                                />
+                                <div className="relative h-48 w-full">
+                                  <img 
+                                    src={image} 
+                                    alt={`${item.name} - view ${idx + 1}`} 
+                                    className="w-full h-48 object-cover transition-transform hover:scale-105 duration-500"
+                                  />
+                                </div>
                               </CarouselItem>
                             ))}
                           </CarouselContent>
-                          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 z-10">
-                            <button className="bg-black/50 rounded-full p-1 text-white hover:bg-black/70 transition-colors">
-                              <ChevronLeft className="h-5 w-5" />
-                            </button>
-                            <button className="bg-black/50 rounded-full p-1 text-white hover:bg-black/70 transition-colors">
-                              <ChevronRight className="h-5 w-5" />
-                            </button>
-                          </div>
+                          <CarouselPrevious className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white h-8 w-8" />
+                          <CarouselNext className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white h-8 w-8" />
                         </Carousel>
                       </div>
                       <div className="p-6">
@@ -350,8 +346,8 @@ const Menu = () => {
         {/* CTA */}
         <div className="text-center mt-8" ref={addToRefs}>
           <div className="reveal">
-            <Link to="/menu">
-              <Button size="lg" className="bg-restaurant-burgundy hover:bg-restaurant-burgundy/90 text-white">
+            <Link to="/menu" className="animate-[fadeIn_2s_ease-out]">
+              <Button size="lg" className="bg-restaurant-burgundy hover:bg-restaurant-burgundy/90 text-white transform hover:scale-105 transition-transform duration-300">
                 View Full Menu
               </Button>
             </Link>

@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { cn } from "@/lib/utils";
 
 type MenuItem = {
@@ -309,10 +310,17 @@ const menuData: MenuCategory[] = [
 
 const MenuPage = () => {
   const [activeCategory, setActiveCategory] = useState('Starters');
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Set the loaded state after a short delay to trigger animations
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
   }, []);
 
   const renderDietaryIcons = (dietary?: string[]) => {
@@ -336,7 +344,7 @@ const MenuPage = () => {
       
       {/* Hero Section */}
       <div className="relative pt-24 pb-16 bg-restaurant-charcoal">
-        <div className="container mx-auto px-4 text-center text-white">
+        <div className={`container mx-auto px-4 text-center text-white ${isLoaded ? 'animate-[fadeInDown_1s_ease-out]' : ''}`}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">Our Menu</h1>
           <div className="w-24 h-1 bg-restaurant-gold mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-white/80">
@@ -349,8 +357,8 @@ const MenuPage = () => {
       {/* Menu Categories */}
       <div className="sticky top-20 z-30 bg-white shadow-md">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex overflow-x-auto gap-2 md:gap-4 justify-start md:justify-center">
-            {menuData.map((category) => (
+          <div className={`flex overflow-x-auto gap-2 md:gap-4 justify-start md:justify-center ${isLoaded ? 'animate-[fadeIn_1.5s_ease-out]' : ''}`}>
+            {menuData.map((category, index) => (
               <button
                 key={category.name}
                 className={cn(
@@ -360,6 +368,7 @@ const MenuPage = () => {
                     : "bg-gray-100 text-restaurant-charcoal hover:bg-restaurant-gold/10"
                 )}
                 onClick={() => setActiveCategory(category.name)}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {category.name}
               </button>
@@ -374,7 +383,7 @@ const MenuPage = () => {
           {menuData
             .filter((category) => category.name === activeCategory)
             .map((category) => (
-              <div key={category.name} className="animate-fade-in">
+              <div key={category.name} className={`${isLoaded ? 'animate-fade-in' : ''}`}>
                 <div className="text-center max-w-2xl mx-auto mb-12">
                   <h2 className="text-3xl md:text-4xl font-display font-bold text-restaurant-charcoal mb-2">
                     {category.name}
@@ -385,7 +394,12 @@ const MenuPage = () => {
                 
                 <div className="grid md:grid-cols-2 gap-8">
                   {category.items.map((item, index) => (
-                    <div key={index} className="flex gap-6 group">
+                    <div 
+                      key={index} 
+                      className={`flex gap-6 group hover:bg-gray-50 p-3 rounded-lg transition-all cursor-pointer ${isLoaded ? 'animate-[fadeIn_0.5s_ease-out]' : ''}`}
+                      style={{ animationDelay: `${index * 50}ms` }}
+                      onClick={() => item.image && setSelectedImage(item.image)}
+                    >
                       {item.image && (
                         <div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
                           <img 
@@ -412,6 +426,19 @@ const MenuPage = () => {
             ))}
         </div>
       </div>
+      
+      {/* Lightbox for Menu Images */}
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-2xl p-0 bg-transparent border-0 animate-[scaleIn_0.3s_ease-out]">
+          {selectedImage && (
+            <img 
+              src={selectedImage} 
+              alt="Menu item" 
+              className="w-full h-full object-contain rounded-lg"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
       
       <Footer />
     </div>
